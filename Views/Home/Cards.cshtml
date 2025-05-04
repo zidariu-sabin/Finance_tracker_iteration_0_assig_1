@@ -6,19 +6,47 @@
     <div class="container-fluid vh-100 --bs-danger-rgb">
         <div class="d-flex align-items-center justify-content-center h-100">
             <div class="row justify-content-center w-100">
-                <div class="col-md-8 d-flex justify-content-center align-items-center">
+                <div class="d-flex justify-content-center align-items-center gap-3">
                     <div class="credit-card p-3">
                         <div class="d-flex justify-content-end w-100 mb-2">
                             <div class="circle bg-danger me-2"></div>
                             <div class="circle bg-warning"></div>
                         </div>
-                        <div class="pin mb-3 ms-3"></div>
+                        <div class="pin"></div>
                         <p class="card-number mt-2 text-center">1234 1234 1234 1234</p>
                         <p class="card-expiry text-center">12/26</p>
-                        <div class="d-flex justify-content-end w-100 mt-2 pe-3">
+                        <div class="d-flex justify-content-between w-100 mt-2 pe-3">
+                            <span>ZIDARIU SABIN</span>
                             <p class="fst-italic fw-bold mb-0">VISA</p>
                         </div>
                     </div>
+                     <div class="credit-card p-3">
+                        <div class="d-flex justify-content-end w-100 mb-2">
+                            <div class="circle bg-danger me-2"></div>
+                            <div class="circle bg-warning"></div>
+                        </div>
+                        <div class="pin"></div>
+                        <p class="card-number mt-2 text-center">1234 1234 1234 1234</p>
+                        <p class="card-expiry text-center">12/26</p>
+                        <div class="d-flex justify-content-between w-100 mt-2 pe-3">
+                            <span>ZIDARIU SABIN</span>
+                            <p class="fst-italic fw-bold mb-0">VISA</p>
+                        </div>
+                    </div>
+                    <div class="credit-card p-3">
+                        <div class="d-flex justify-content-end w-100 mb-2">
+                            <div class="circle bg-danger me-2"></div>
+                            <div class="circle bg-warning"></div>
+                        </div>
+                        <div class="pin"></div>
+                        <p class="card-number mt-2 text-center">1234 1234 1234 1234</p>
+                        <p class="card-expiry text-center">12/26</p>
+                        <div class="d-flex justify-content-between w-100 mt-2 pe-3">
+                            <span>ZIDARIU SABIN</span>
+                            <p class="fst-italic fw-bold mb-0">VISA</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -42,7 +70,10 @@
         width: 60px;
         background-color: lightgoldenrodyellow;
         border-radius: 10px;
-        display: block;
+        flex-grow:1;
+        position: absolute;
+        z-index: 1;
+        top: 40%;
     }
 
     .card-number, .card-expiry {
