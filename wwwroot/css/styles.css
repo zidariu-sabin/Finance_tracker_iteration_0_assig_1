@@ -1,0 +1,5 @@
+.display-items-center{
+    display:flex;
+    place-content: center;
+    align-items:center;
+}
