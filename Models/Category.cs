@@ -9,6 +9,8 @@ namespace finance_tracker_iteration_0_dotnet_mvc.Models
 
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         public virtual ICollection<Transaction> Transactions { get; set; }
         public virtual ICollection<Budget> Budgets { get; set; }
         public virtual ICollection<RecurringTransaction> RecurringTransactions

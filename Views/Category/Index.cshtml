@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<main>
+    <div class="container-fluid vh-100 vw-100">
+        <div class="py-5 container">
+            <div class="card category-card p-3">
+                <div class="d-flex align-items-center">
+                    <div class="category-icon me-3">
+                        <i class="bi bi-cart-fill"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-1">Groceries</h5>
+                        <div class="amount">$220.50 spent</div>
+                        <div class="description">Includes supermarket and food delivery purchases.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<style>
+    .card {
+        width: 225px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        border-width: 1px;
+        border-radius: 30px;
+    }
+
+    .section {
+        display: flex;
+        flex-direction: row;
+        justify-content: between;
+    }
+
+    .header {
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        background-color: #67AE6E;
+        padding: 10px 10px;
+        height: 40px;
+    }
+
+    .category-card {
+        border-radius: 1rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+    }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+        }
+
+    .category-icon {
+        font-size: 2rem;
+        background-color: #f0f2f5;
+        border-radius: 50%;
+        padding: 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #4a4a4a;
+    }
+
+    .amount {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #198754;
+    }
+
+    .description {
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+</style>

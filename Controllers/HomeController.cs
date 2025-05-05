@@ -33,7 +33,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Categorization()
+    public IActionResult Transactions()
     {
         return View();
     }
