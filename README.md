@@ -1,4 +1,4 @@
-Finance Tracker 
+# Finance Tracker 
 
  
 
@@ -9,7 +9,7 @@ Team members: ZIdariu Sabin(3.2B)
 Key features: 
  
 
-*Expense Categorization & Analysis( Store and track historical transactions). 
+## Expense Categorization & Analysis( Store and track historical transactions). 
 
   - Users can record expenses and assign them to categories (e.g., Food, Entertainment, Rent), way of payment, type(recurring, nonrecurring), location. 
 
@@ -17,7 +17,7 @@ Key features:
 
   - Set budget limits for categories/ per month 
 
-Income vs. expenses insights. 
+## Income vs. expenses insights. 
 
    - Generate monthly/annual reports (PDF/CSV). 
 
@@ -25,7 +25,7 @@ Income vs. expenses insights.
 
    - Charts & graphs to show spending trends. 
 
-Notifications/Alerts 
+## Notifications/Alerts 
 
    - notifications for budget limits  
 
