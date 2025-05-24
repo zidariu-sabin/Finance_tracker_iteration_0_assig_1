@@ -1,90 +1,86 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using finance_tracker_iteration_0_dotnet_mvc.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using finance_tracker_iteration_0_dotnet_mvc.Models;
 
 namespace finance_tracker_iteration_0_dotnet_mvc.Controllers
 {
     [Authorize]
-    public class CategoryController : Controller
+    public class CardController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
 
-        public CategoryController(ApplicationDbContext context, UserManager<User> userManager)
+        public CardController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
 
-        // List all categories for the current user
+        // List all cards for the current user
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
-            var categories = _context.Categories
-                .Where(c => c.UserId == user.Id)
-                .ToList();
-            return View(categories);
+            var cards = _context.Cards.Where(c => c.UserId == user.Id).ToList();
+            return View(cards);
         }
 
         // GET: Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Category category)
+        public async Task<IActionResult> Create(Card card)
         {
             var user = await _userManager.GetUserAsync(User);
             if (ModelState.IsValid)
             {
-                category.UserId = user.Id;
-                _context.Categories.Add(category);
+                card.UserId = user.Id;
+                _context.Cards.Add(card);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(card);
         }
 
         // GET: Edit
         public async Task<IActionResult> Edit(int id)
         {
             var user = await _userManager.GetUserAsync(User);
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null || category.UserId != user.Id)
+            var card = await _context.Cards.FindAsync(id);
+            if (card == null || card.UserId != user.Id)
                 return NotFound();
-            return View(category);
+            return View(card);
         }
 
         // POST: Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Category category)
+        public async Task<IActionResult> Edit(int id, Card card)
         {
             var user = await _userManager.GetUserAsync(User);
-            if (id != category.Id || category.UserId != user.Id)
+            if (id != card.Id || card.UserId != user.Id)
                 return NotFound();
 
             if (ModelState.IsValid)
             {
-                _context.Update(category);
+                card.UserId = user.Id; // Ensure UserId is set
+                _context.Update(card);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(card);
         }
 
         // GET: Delete
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _userManager.GetUserAsync(User);
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null || category.UserId != user.Id)
+            var card = await _context.Cards.FindAsync(id);
+            if (card == null || card.UserId != user.Id)
                 return NotFound();
-            return View(category);
+            return View(card);
         }
 
         // POST: Delete
@@ -93,11 +89,11 @@ namespace finance_tracker_iteration_0_dotnet_mvc.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var user = await _userManager.GetUserAsync(User);
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null || category.UserId != user.Id)
+            var card = await _context.Cards.FindAsync(id);
+            if (card == null || card.UserId != user.Id)
                 return NotFound();
 
-            _context.Categories.Remove(category);
+            _context.Cards.Remove(card);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

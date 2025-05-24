@@ -1,21 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace finance_tracker_iteration_0_dotnet_mvc.Models
+﻿namespace finance_tracker_iteration_0_dotnet_mvc.Models
 {
     public class Category
     {
-        [Key]
         public int Id { get; set; }
+        public int UserId { get; set; }
 
-        public string Name { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
+        public ICollection<Budget> Budgets { get; set; } = new List<Budget>();
 
-        public virtual ICollection<Transaction> Transactions { get; set; }
-        public virtual ICollection<Budget> Budgets { get; set; }
-        public virtual ICollection<RecurringTransaction> RecurringTransactions
-        {
-            get; set;
-        }
+        public void Create() { }
+        public void Edit() { }
+        public void Delete() { }
     }
 }

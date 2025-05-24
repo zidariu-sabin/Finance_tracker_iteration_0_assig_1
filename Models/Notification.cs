@@ -1,22 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using finance_tracker_iteration_0_dotnet_mvc.Enums;
 
 namespace finance_tracker_iteration_0_dotnet_mvc.Models
-
 {
     public class Notification
     {
-        [Key]
         public int Id { get; set; }
+        public int UserId { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public NotificationStatus Status { get; set; }
+        public string Type { get; set; } = string.Empty;
+        public DateTime Timestamp { get; set; }
 
-        public bool Status { get; set; }
-
-        public DateTime CreationDate { get; set; }
-
-        [EnumDataType(typeof(NotificationTopic))]
-        public NotificationTopic Topic { get; set; }
-
-        public string RecordId { get; set; }
-
-        public string Message { get; set; }
+        public void MarkAsRead() => Status = NotificationStatus.Read;
     }
 }

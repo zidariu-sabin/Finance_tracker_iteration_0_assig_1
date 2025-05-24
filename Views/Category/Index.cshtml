@@ -1,20 +1,37 @@
-﻿@{
+﻿@model IEnumerable<finance_tracker_iteration_0_dotnet_mvc.Models.Category>
+@{
     ViewData["Title"] = "Index";
 }
 <main>
-    <div class="container-fluid vh-100 vw-100">
+    <div class="container-fluid vh-100">
         <div class="py-5 container">
-            <div class="card category-card p-3">
-                <div class="d-flex align-items-center">
-                    <div class="category-icon me-3">
-                        <i class="bi bi-cart-fill"></i>
+            <div class="mt-4"></div>
+                <a class="btn btn-success" asp-action="Create">Add Category</a>
+            </div>
+            <div class="row g-4">
+                @foreach (var category in Model)
+                {
+                    <div class="col-auto">
+                        <div class="card category-card p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="category-icon me-3">
+                                    <i class="bi bi-cart-fill"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">@category.Title</h5>
+                                    <div class="amount">22.5USD</div>
+                                    <div class="description">
+                                        @category.Description
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 d-flex justify-content-end card-actions">
+                                <a class="btn btn-sm btn-primary me-2" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
+                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@category.Id">Delete</a>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h5 class="mb-1">Groceries</h5>
-                        <div class="amount">$220.50 spent</div>
-                        <div class="description">Includes supermarket and food delivery purchases.</div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
@@ -49,9 +66,18 @@
         transition: transform 0.2s;
     }
 
-        .category-card:hover {
-            transform: translateY(-4px);
-        }
+    .category-card:hover {
+        transform: translateY(-4px);
+    }
+        .card-actions {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+    }
+        .category-card:hover .card-actions {
+        opacity: 1;
+        pointer-events: auto;
+    }
 
     .category-icon {
         font-size: 2rem;

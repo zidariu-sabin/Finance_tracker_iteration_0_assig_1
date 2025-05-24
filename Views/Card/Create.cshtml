@@ -1,0 +1,29 @@
+@model finance_tracker_iteration_0_dotnet_mvc.Models.Card
+@{
+    ViewData["Title"] = "Add Card";
+}
+<h2>Add Card</h2>
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="Holder" class="form-label"></label>
+        <input asp-for="Holder" class="form-control" />
+        <span asp-validation-for="Holder" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CardNumber" class="form-label"></label>
+        <input asp-for="CardNumber" class="form-control" maxlength="16" pattern="\d{16}" />
+        <span asp-validation-for="CardNumber" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Expiry" class="form-label"></label>
+        <input asp-for="Expiry" class="form-control" type="date" />
+        <span asp-validation-for="Expiry" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Currency" class="form-label"></label>
+        <select asp-for="Currency" class="form-control" asp-items="Html.GetEnumSelectList<finance_tracker_iteration_0_dotnet_mvc.Enums.Currency>()"></select>
+        <span asp-validation-for="Currency" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Add</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

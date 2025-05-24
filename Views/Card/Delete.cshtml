@@ -1,0 +1,13 @@
+@model finance_tracker_iteration_0_dotnet_mvc.Models.Card
+@{
+    ViewData["Title"] = "Delete Card";
+}
+<h2>Delete Card</h2>
+<div class="alert alert-danger">
+    Are you sure you want to delete card <strong>@Model.Holder</strong> expiring @Model.Expiry.ToString("MM/yy")?
+</div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

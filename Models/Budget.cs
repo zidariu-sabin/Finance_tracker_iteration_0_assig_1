@@ -1,22 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace finance_tracker_iteration_0_dotnet_mvc.Models
+﻿namespace finance_tracker_iteration_0_dotnet_mvc.Models
 {
     public class Budget
     {
-        [Key]
-        public int BudgetId { get; set; }
+        public int Id { get; set; }
+        public int Amount { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
 
-        [ForeignKey("Category")]
-        public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
-
-        public int Value { get; set; }
-
-        [EnumDataType(typeof(BudgetFrequency))]
-        public BudgetFrequency Frequency { get; set; }
-
-        public string Description { get; set; }
+        public void CheckIfExceeded() { }
+        public void Create() { }
+        public void Edit() { }
+        public void Delete() { }
     }
 }

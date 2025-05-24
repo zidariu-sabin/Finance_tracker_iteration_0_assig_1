@@ -1,0 +1,78 @@
+@model IEnumerable<finance_tracker_iteration_0_dotnet_mvc.Models.Card>
+@{
+    ViewData["Title"] = "Cards";
+}
+<main>
+    <div class="container-fluid vh-100">
+        <div class="d-flex align-items-center justify-content-center h-100">
+            <div class="row justify-content-center w-100">
+                <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+                    @foreach (var card in Model)
+                    {
+                        <div class="credit-card p-3 mb-3">
+                            <div class="d-flex justify-content-end w-100 mb-2">
+                                <div class="circle bg-danger me-2"></div>
+                                <div class="circle bg-warning"></div>
+                            </div>
+                            <div class="pin"></div>
+                            <p class="card-number mt-2 text-center">@card.CardNumber</p>
+                            <p class="card-expiry text-center">@card.Expiry.ToString("MM/yy")</p>
+                            <div class="d-flex justify-content-between w-100 mt-2 pe-3">
+                                <span>@card.Holder</span>
+                                <p class="fst-italic fw-bold mb-0">@(card.Currency.ToString())</p>
+                            </div>
+                            <div class="mt-2 d-flex justify-content-end card-actions">
+                                <a class="btn btn-sm btn-primary me-2" asp-action="Edit" asp-route-id="@card.Id">Edit</a>
+                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@card.Id">Delete</a>
+                            </div>
+                        </div>
+                    }
+                    <a class="btn btn-success align-self-start" asp-action="Create">Add Card</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<style>
+    .credit-card {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        width: 400px;
+        background-color: lightskyblue;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        margin-right: 10px;
+    }
+    .pin {
+        height: 40px;
+        width: 60px;
+        background-color: lightgoldenrodyellow;
+        border-radius: 10px;
+        flex-grow:1;
+        position: absolute;
+        z-index: 1;
+        top: 40%;
+    }
+    .card-number, .card-expiry {
+        color: black;
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    .circle {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .card-actions {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+    }
+    .credit-card:hover .card-actions {
+        opacity: 1;
+        pointer-events: auto;
+    }
+</style>

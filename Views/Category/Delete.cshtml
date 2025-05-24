@@ -1,0 +1,13 @@
+@model finance_tracker_iteration_0_dotnet_mvc.Models.Category
+@{
+    ViewData["Title"] = "Delete Category";
+}
+<h2>Delete Category</h2>
+<div class="alert alert-danger">
+    Are you sure you want to delete <strong>@Model.Title</strong>?
+</div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
