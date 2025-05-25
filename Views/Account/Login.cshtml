@@ -4,8 +4,8 @@
 
 <h2>Login</h2>
 
-<form asp-action="Login" method="post">
-    <div>
+<form style="" asp-action="Login" method="post">
+    <div >
         <label>Email</label>
         <input type="email" name="email" required />
     </div>
@@ -14,6 +14,7 @@
         <input type="password" name="password" required />
     </div>
     <button type="submit">Login</button>
+    <button><a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a> </button>
 </form>
 
 @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
