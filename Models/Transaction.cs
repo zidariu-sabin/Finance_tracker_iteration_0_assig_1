@@ -6,7 +6,6 @@ namespace finance_tracker_iteration_0_dotnet_mvc.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; } = null!;
 
         public int Amount { get; set; }
         public Currency Currency { get; set; }
@@ -21,7 +20,7 @@ namespace finance_tracker_iteration_0_dotnet_mvc.Models
         public PaymentMethod? PaymentMethod { get; set; }
 
         public int LocationId { get; set; }
-        public Location Location { get; set; } = null!;
+        public Location? Location { get; set; } = null!;
 
         public DateTime Date { get; set; }
 

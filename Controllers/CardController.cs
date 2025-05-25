@@ -39,7 +39,18 @@ namespace finance_tracker_iteration_0_dotnet_mvc.Controllers
                 card.UserId = user.Id;
                 _context.Cards.Add(card);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var paymentMethod = new PaymentMethod
+                {
+                    Name = card.Holder + " Card",
+                    Type = finance_tracker_iteration_0_dotnet_mvc.Enums.PaymentMethodType.Card,
+                    UserId = user.Id,
+                    CardId = card.Id
+                };
+                _context.PaymentMethods.Add(paymentMethod);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index", "PaymentMethod");
+
             }
             return View(card);
         }
@@ -90,12 +101,16 @@ namespace finance_tracker_iteration_0_dotnet_mvc.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             var card = await _context.Cards.FindAsync(id);
+            var paymentMethod = _context.PaymentMethods.FirstOrDefault(pm => pm.CardId == id && pm.UserId == user.Id);
+            if (paymentMethod != null && paymentMethod.UserId == user.Id){
+                _context.PaymentMethods.Remove(paymentMethod);
+            }
             if (card == null || card.UserId != user.Id)
                 return NotFound();
 
             _context.Cards.Remove(card);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "PaymentMethod");
         }
     }
 }

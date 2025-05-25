@@ -7,7 +7,7 @@ namespace finance_tracker_iteration_0_dotnet_mvc.Models
         public int UserId { get; set; }
         public User User { get; set; } = null!;
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public PaymentMethodType Type { get; set; }
         public int? CardId { get; set; }
         public Card? Card { get; set; }

@@ -89,9 +89,9 @@ namespace finance_tracker_iteration_0_dotnet_mvc
 
             // Configure the Transaction-User relationship
             modelBuilder.Entity<Transaction>()
-                .HasOne(t => t.User)
+                .HasOne<User>()
                 .WithMany(u => u.Transactions)
-                .HasForeignKey(t => t.UserId)
+                .HasForeignKey("UserId")
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction); // No cascade delete
                 

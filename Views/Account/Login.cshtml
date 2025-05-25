@@ -14,7 +14,7 @@
         <input type="password" name="password" required />
     </div>
     <button type="submit">Login</button>
-    <button><a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a> </button>
+    <button><a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register first -></a> </button>
 </form>
 
 @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))

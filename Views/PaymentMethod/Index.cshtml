@@ -1,0 +1,105 @@
+@model IEnumerable<finance_tracker_iteration_0_dotnet_mvc.Models.PaymentMethod>
+
+@{
+    ViewData["Title"] = "Cards";
+    var physicalMethods = Model.Where(pm => pm.Type == finance_tracker_iteration_0_dotnet_mvc.Enums.PaymentMethodType.Physical).ToList();
+    var cardMethods = Model.Where(pm => pm.Type == finance_tracker_iteration_0_dotnet_mvc.Enums.PaymentMethodType.Card && pm.Card != null).ToList();
+}
+<main>
+    <div class="container-fluid vh-100">
+        <div class="container pt-5 h-100">
+            <div class="d-flex flex-column w-100 gap-3">
+                    <div class="d-flex flex-column gap-3">
+                        <h4>Physical Payment Methods</h4>
+                        <div class="d-flex flex-row gap-3">
+                            <div class="d-flex align-items-center">
+                                <a class="btn btn-success  " asp-action="Create">Add Physical Method</a>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 flex-wrap mb-4">
+                                @foreach (var paymentMethod in physicalMethods)
+                                {
+                                    <div class="credit-card d-flex justify-content-center align-items-center">
+                                        <span class="fs-3 fw-bold">@paymentMethod.Name</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column gap-3">
+                        <h4>Card Payment Methods</h4>
+                        <div class="d-flex flex-row gap-3">
+                            <div class="d-flex align-items-center">
+                                <a class="btn btn-success " asp-controller="Card" asp-action="Create">Add Card</a>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 flex-wrap">
+                                @foreach (var paymentMethod in cardMethods)
+                                {
+                                    var card = paymentMethod.Card;
+                                    <div class="credit-card p-3 mb-3">
+                                        <div class="d-flex justify-content-end w-100 mb-2">
+                                            <div class="circle bg-danger me-2"></div>
+                                            <div class="circle bg-warning"></div>
+                                        </div>
+                                        <div class="pin"></div>
+                                        <p class="card-number mt-2 text-center">@card.CardNumber</p>
+                                        <p class="card-expiry text-center">@card.Expiry.ToString("MM/yy")</p>
+                                        <div class="d-flex justify-content-between w-100 mt-2 pe-3">
+                                            <span>@card.Holder</span>
+                                            <p class="fst-italic fw-bold mb-0">@(card.Currency.ToString())</p>
+                                        </div>
+                                        <div class="mt-2 d-flex justify-content-end card-actions">
+                                            <a class="btn btn-sm btn-primary me-2" asp-controller="Card" asp-action="Edit" asp-route-id="@paymentMethod.CardId">Edit</a>
+                                            <a class="btn btn-sm btn-danger" asp-controller="Card" asp-action="Delete" asp-route-id="@paymentMethod.CardId">Delete</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</main>
+<style>
+    .credit-card {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        width: 400px;
+        background-color: lightskyblue;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        margin-right: 10px;
+    }
+    .pin {
+        height: 40px;
+        width: 60px;
+        background-color: lightgoldenrodyellow;
+        border-radius: 10px;
+        flex-grow:1;
+        position: absolute;
+        z-index: 1;
+        top: 40%;
+    }
+    .card-number, .card-expiry {
+        color: black;
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    .circle {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .card-actions {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+    }
+    .credit-card:hover .card-actions {
+        opacity: 1;
+        pointer-events: auto;
+    }
+</style>

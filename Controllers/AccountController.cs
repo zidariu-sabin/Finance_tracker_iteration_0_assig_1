@@ -32,6 +32,18 @@ namespace finance_tracker_iteration_0_dotnet_mvc.Controllers
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
+                 // Create default payment method
+            using (var scope = HttpContext.RequestServices.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                db.PaymentMethods.Add(new PaymentMethod
+                {
+                    Name = "Cash",
+                    Type = finance_tracker_iteration_0_dotnet_mvc.Enums.PaymentMethodType.Physical,
+                    UserId = user.Id
+                });
+                await db.SaveChangesAsync();
+            }
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction("Index", "Home");
             }
